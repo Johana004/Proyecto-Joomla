@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  joomla:
+    image: joomla:5-apache
+    ports:
+      - "8080:80"
+    environment:
+      JOOMLA_DB_HOST: mariadb
+      JOOMLA_DB_USER: joomla
+      JOOMLA_DB_PASSWORD: StrongUserPwd!123
+      JOOMLA_DB_NAME: joomla
+    volumes:
+      - ./data/joomla:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - joomlared
+
+  mariadb:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: StrongRootPwd!123
+      MARIADB_DATABASE: joomla
+      MARIADB_USER: joomla
+      MARIADB_PASSWORD: StrongUserPwd!123
+    volumes:
+      - ./data/db:/var/lib/mysql
+    networks:
+      - joomlared
+
+networks:
+  joomlared:
+    driver: bridge

@@ -1,0 +1,11 @@
+# Volúmenes de Docker
+data/
+logs/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+.env
