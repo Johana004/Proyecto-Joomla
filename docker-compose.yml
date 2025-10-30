@@ -26,6 +26,7 @@ services:
       MARIADB_PASSWORD: StrongUserPwd!123
     volumes:
       - ./data/db:/var/lib/mysql
+      - ./php.ini:/usr/local/etc/php/conf.d/uploads.ini
     networks:
       - joomlared
 
